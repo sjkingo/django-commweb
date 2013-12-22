@@ -1,0 +1,3 @@
+
+class PaymentDeclinedError(BaseException):
+    pass
