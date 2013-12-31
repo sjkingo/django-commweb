@@ -10,12 +10,12 @@ def cartridge_payment_handler(request, order_form, order):
 
     p = Purchase(cart.total_price(), trans_id,
             order_form.cleaned_data['card_number'],
-            order_form.cleaned_data['card_expiry_year'],
+            order_form.cleaned_data['card_expiry_year'][2:4],
             order_form.cleaned_data['card_expiry_month'],
             order_form.cleaned_data['card_ccv'])
 
     try:
-        approved, recpt = p.process()
-        return recpt
+        p.process()
+        return trans_id
     except PaymentDeclinedError, e:
         raise CheckoutError('Payment declined: %s' % str(e))

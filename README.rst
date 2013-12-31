@@ -55,7 +55,7 @@ Cartridge
 
 A payment handler for Cartridge_ is provided by ``commweb.cartridge.cartridge_payment_handler``. You only need to set ``SHOP_HANDLER_PAYMENT`` in your project's settings file to activate this functionality::
 
-     SHOP_HANDLER_PAYMENT = 'commweb.cartridge.cartridge_payment_handler'
+     SHOP_HANDLER_PAYMENT = 'commweb.cartridge_hook.cartridge_payment_handler'
 
 .. _Cartridge: http://cartridge.jupo.org/overview.html
 
