@@ -9,7 +9,11 @@ class CommwebResponse(object):
 
     @property
     def response_code(self):
-        return int(self.vpc_TxnResponseCode)
+        # This can either be an int or a str.. thanks CBA
+        try:
+            return int(self.vpc_TxnResponseCode)
+        except ValueError:
+            return self.vpc_TxnResponseCode
 
     @property
     def approved(self):
@@ -19,3 +23,12 @@ class CommwebResponse(object):
         from pprint import pprint
         pprint(self.__dict__)
 
+class ResponseCode(object):
+    APPROVED = 0
+    UNSPECIFIED_FAILURE = 1
+    DECLINED_E = 'E'
+    DECLINED_2 = 2
+    NO_REPLY = 3
+    CARD_EXPIRED = 4
+    INSUFFICIENT_CREDIT = 5
+    MESSAGE_DETAIL_ERROR = 7 # invalid values sent

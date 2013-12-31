@@ -1,14 +1,16 @@
+from django.conf import settings
 import requests
 import urlparse
 
-from commweb import settings
-from commweb.exc import PaymentDeclinedError
+from commweb.exc import *
 from commweb.response import CommwebResponse
 
 class TransactionPayment(object):
     VPC_COMMAND = 'pay'
 
     attempt = 1 #: number of payment requests sent for this transaction
+
+    _last_resp = None
 
     def __init__(self, amount, order_info, card_num, card_exp_year, card_exp_month, card_csc):
         self.str_amount = str(amount).replace('.', '')
@@ -36,10 +38,13 @@ class TransactionPayment(object):
         }
 
         r = requests.post(settings.COMMWEB_VPC_ENDPOINT, data=d)
-        resp = CommwebResponse(**urlparse.parse_qs(r.text))
+        self._last_resp = CommwebResponse(**urlparse.parse_qs(r.text))
         self.attempt += 1
+
+        if self._last_resp.vpc_Merchant != settings.COMMWEB_MERCHANT:
+            raise InvalidResponseError('Merchant IDs do not match')
         
-        if resp.approved:
-            return (resp.vpc_Message, resp.vpc_ReceiptNo)
+        if self._last_resp.approved:
+            return (self._last_resp.vpc_Message, self._last_resp.vpc_ReceiptNo)
         else:
-            raise PaymentDeclinedError(resp)
+            raise PaymentDeclinedError(self._last_resp)
