@@ -5,12 +5,13 @@ import urlparse
 from commweb.exc import *
 from commweb.response import CommwebResponse
 
-class TransactionPayment(object):
+class Purchase(object):
+    VPC_ENDPOINT = 'https://migs.mastercard.com.au/vpcdps'
+    VPC_VERSION = 1
     VPC_COMMAND = 'pay'
 
     attempt = 1 #: number of payment requests sent for this transaction
-
-    _last_resp = None
+    _last_resp = None #: the last CommwebResponse object, or None
 
     def __init__(self, amount, order_info, card_num, card_exp_year, card_exp_month, card_csc):
         self.str_amount = str(amount).replace('.', '')
@@ -25,7 +26,7 @@ class TransactionPayment(object):
         return '%s/%d' % (self.order_info, self.attempt)
 
     def process(self):
-        d = {'vpc_Version': settings.COMMWEB_VPC_VERSION,
+        d = {'vpc_Version': self.VPC_VERSION,
              'vpc_Command': self.VPC_COMMAND,
              'vpc_Merchant': settings.COMMWEB_MERCHANT,
              'vpc_AccessCode': settings.COMMWEB_ACCESS_CODE,
@@ -37,7 +38,7 @@ class TransactionPayment(object):
              'vpc_CardSecurityCode': self.card_csc,
         }
 
-        r = requests.post(settings.COMMWEB_VPC_ENDPOINT, data=d)
+        r = requests.post(self.VPC_ENDPOINT, data=d)
         self._last_resp = CommwebResponse(**urlparse.parse_qs(r.text))
         self.attempt += 1
 
