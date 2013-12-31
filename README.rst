@@ -48,13 +48,17 @@ Installation
 Intergration
 ------------
 
-django-commweb can be intergrated directly as a Cartridge payment processor through the ``commweb.cartridge`` module, or by
-accessing the API directly through ``commweb.purchase``.
+Two options are available for intergrating django-commweb into your Django app.
 
 Cartridge
 ~~~~~~~~~
 
+A Cartridge payment handler is provided by ``commweb.cartridge.cartridge_payment_handler``. You only need to set ``SHOP_HANDLER_PAYMENT`` in
+your project's settings file to activate this functionality::
+
+     SHOP_HANDLER_PAYMENT = 'commweb.cartridge.cartridge_payment_handler'
+
 Using the API directly
 ~~~~~~~~~~~~~~~~~~~~~~
 
-See ``commweb.test.test_responses.py`` for an example of how to call the API directly.
+See ``commweb.test.test_responses.py`` for an example of how to call the API directly. The API module is located at ``commweb.purchase``.
