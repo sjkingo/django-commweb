@@ -4,10 +4,11 @@ django-commweb
 
 django-commweb is a Django module for interfacing with the CommWeb_ merchant gateway, the Commonwealth Bank of Australia's merchant payment facility.
 
-Source is available on GitHub_.
+Source is available on GitHub_, as is the Changelog_.
 
 .. _CommWeb: https://www.commbank.com.au/business/merchant-services/accept-online-payments/commweb.html
 .. _GitHub: https://github.com/sjkingo/django-commweb
+.. _Changelog: https://github.com/sjkingo/django-commweb/blob/master/CHANGELOG.md
 
 Supported functions
 -------------------
