@@ -18,8 +18,9 @@ Supported functions
 Dependencies
 ------------
 
-* Django_ (tested with 1.5 and 1.6)
-* requests_ (tested with 2.2)
+* Python 2.7 or 3.4+
+* Django_ (tested with 1.5 through 1.8)
+* requests_
 
 .. _Django: https://www.djangoproject.com/
 .. _requests: http://docs.python-requests.org/en/latest/
