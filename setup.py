@@ -3,13 +3,15 @@
 import os
 from setuptools import setup, find_packages
 
+from commweb import __version__
+
 long_description = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-commweb',
-    version='0.2',
+    version=__version__,
     description='Django module for interfacing with the CommWeb merchant gateway.',
     long_description=long_description,
     author='Sam Kingston',
