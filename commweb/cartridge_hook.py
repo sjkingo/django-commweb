@@ -15,5 +15,5 @@ def cartridge_payment_handler(request, order_form, order):
     try:
         p.process()
         return trans_id
-    except PaymentDeclinedError, e:
+    except PaymentDeclinedError as e:
         raise CheckoutError('Payment declined: %s' % str(e))

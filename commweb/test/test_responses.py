@@ -28,7 +28,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.10'), 'test_failed')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.UNSPECIFIED_FAILURE)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
@@ -37,7 +37,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.01'), 'test_declined_E')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.DECLINED_E)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
@@ -46,7 +46,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.05'), 'test_declined_2')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.DECLINED_2)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
@@ -55,7 +55,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.68'), 'test_no_reply')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.NO_REPLY)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
@@ -64,7 +64,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.54'), 'test_card_expired')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.CARD_EXPIRED)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
@@ -73,7 +73,7 @@ class TestResponses(unittest.TestCase):
         t = self.purchase(Decimal('1.51'), 'test_insufficient_credit')
         try:
             r = t.process()
-        except PaymentDeclinedError, e:
+        except PaymentDeclinedError as e:
             self.assertEquals(e.response.response_code, ResponseCode.INSUFFICIENT_CREDIT)
         else:
             self.fail(msg='PaymentDeclinedError should have been raised')
