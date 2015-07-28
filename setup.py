@@ -15,7 +15,7 @@ setup(
     author='Sam Kingston',
     author_email='sam@sjkwi.com.au',
     url='https://github.com/sjkingo/django-commweb',
-    install_requires=['Django', 'requests'],
+    install_requires=['Django>=1.5', 'requests'],
     packages=find_packages(exclude=[]),
     include_package_data=True,
     license='BSD License',
