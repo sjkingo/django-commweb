@@ -19,7 +19,7 @@ Dependencies
 ------------
 
 * Python 2.7 or 3.4+
-* Django_ (tested with 1.5 through 1.8)
+* Django_ (tested with 1.5 through 1.9)
 * requests_
 
 .. _Django: https://www.djangoproject.com/
