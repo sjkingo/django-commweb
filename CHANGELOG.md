@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## 0.3.3 - 2016-02-07
+
+* Fix Python 3 import
+* Bump version to sync GitHub/pypi again
+
 0.3 - 2015-07-28
 ----------------
 

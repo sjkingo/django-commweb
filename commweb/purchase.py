@@ -1,6 +1,6 @@
 from django.conf import settings
 import requests
-import urlparse
+from urllib.parse import parse_qs
 
 from commweb.exc import *
 from commweb.response import CommwebResponse
@@ -39,7 +39,7 @@ class Purchase(object):
         }
 
         r = requests.post(self.VPC_ENDPOINT, data=d)
-        self._last_resp = CommwebResponse(**urlparse.parse_qs(r.text))
+        self._last_resp = CommwebResponse(**parse_qs(r.text))
         self.attempt += 1
 
         if self._last_resp.vpc_Merchant != settings.COMMWEB_MERCHANT:
